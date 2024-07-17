@@ -46,7 +46,7 @@ class Graph extends Component<IProps, {}> {
   }
 
   componentDidUpdate(prevProps: IProps) {
-    if (this.table && this.props.data !== prevProps.data) {
+    if (this.table && this.props.ratio !== prevProps.ratio) {
       const uniqueData = this.props.ratio.map((el) => ({
         timestamp: el.timestamp,
         ratio: el.value,
