@@ -34,7 +34,6 @@ class Graph extends Component<IProps, {}> {
     if (this.table) {
       elem.load(this.table);
       elem.setAttribute('view', 'y_line');
-      elem.setAttribute('column-pivots', '[""]');
       elem.setAttribute('row-pivots', '["timestamp"]');
       elem.setAttribute('columns', '["ratio", "upperBound", "lowerBound"]');
       elem.setAttribute('aggregates', JSON.stringify({
@@ -46,10 +45,10 @@ class Graph extends Component<IProps, {}> {
   }
 
   componentDidUpdate(prevProps: IProps) {
-    if (this.table && this.props.ratio !== prevProps.ratio) {
-      const uniqueData = this.props.ratio.map((el) => ({
+    if (this.table && this.props.data !== prevProps.data) {
+      const uniqueData = this.props.data.map((el) => ({
         timestamp: el.timestamp,
-        ratio: el.value,
+        ratio: el.top_ask.price / el.top_bid.price, // Calculate the ratio
         upperBound: this.props.upperBound,
         lowerBound: this.props.lowerBound,
       }));
